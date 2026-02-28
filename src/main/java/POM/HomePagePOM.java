@@ -1,0 +1,87 @@
+package POM;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
+
+public class HomePagePOM
+{
+    WebDriver driver;
+    WebDriverWait wait;
+    private By logInButton = By.xpath("//button[@id='loginBtn']");
+    private By menLink = By.xpath("//a[text()='Men']");
+    private By womenLink = By.xpath("//a[text()='Women']");
+    private By kidsLink = By.xpath("//a[text()='Kids']");
+    private By electronicsLink = By.xpath("//a[text()='Electronic']");
+    private By beautyLink = By.xpath("//a[text()='Beauty']");
+
+    private By desiredProd = By.xpath("//img[contains(@src,'https://m.media-amazon.com/images/I/612Vt0kgNeL._SX679_.jpg')]");
+
+    private By allProducts = By.xpath("//div[contains(@class,'MuiPaper-root MuiCard-root featuredProducts_productCard__xe40f MuiPaper-elevation1 MuiPaper-rounded aos-init aos-animate')]");
+
+
+
+    public HomePagePOM (WebDriver driver)
+    {
+        this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    }
+
+    public WebElement getMenlink() {
+        return driver.findElement(menLink);
+    }
+
+    public WebElement getWomenlink() {
+        return driver.findElement(womenLink);
+    }
+
+    public WebElement getLogInButton()
+    {
+        return driver.findElement(logInButton);
+    }
+
+    public WebElement getkidslink() {
+        return driver.findElement(kidsLink);
+    }
+
+    public WebElement getElectronicslink() {
+        return driver.findElement(electronicsLink);
+    }
+
+    public WebElement getBeautylink() {
+        return driver.findElement(beautyLink);
+    }
+
+    public WebElement getDesiredProd()
+    {
+        return driver.findElement(desiredProd);
+    }
+
+    public List<WebElement> getAllProducts()
+    {
+       return  wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElements(allProducts)));
+    }
+
+    public void selectDesiredProduct(String prodName) throws Exception
+    {
+        for (WebElement element : getAllProducts())
+        {
+            Thread.sleep(100);
+
+            String itemName = element.findElement(By.xpath("descendant::div[@class='featuredProducts_footerLeft__PmkNa']/span[1]")).getText();
+
+            if (itemName.equals(prodName))
+            {
+                element.click();
+                break;
+            }
+        }
+    }
+}
+
