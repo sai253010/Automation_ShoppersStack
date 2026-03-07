@@ -23,6 +23,8 @@ public class CartPagePOM
     private WebElement continueShoppingBtn;
     @FindBy(xpath="//button[text()='Remove from cart']")
     private WebElement removeFromCartBtn;
+    @FindBy(xpath = "//button[text()='Yes']")
+    private WebElement yesbtn;
 
     public CartPagePOM(WebDriver driver)
     {
@@ -47,5 +49,9 @@ public class CartPagePOM
     }
     public WebElement getremoveFromCartBtn() {
         return removeFromCartBtn;
+    }
+    public WebElement getYesbtn()
+    {
+        return yesbtn;
     }
 }

@@ -31,6 +31,8 @@ public class ProductPagePOM
     private WebElement findMyPincodeRBtn;
     @FindBy(xpath = "//a[@id='cart']")
     private WebElement cartIcon;
+    @FindBy(xpath = "//a[text()='Home']")
+    private WebElement homebtn;
 
     public ProductPagePOM(WebDriver driver)
     {
@@ -88,5 +90,10 @@ public class ProductPagePOM
     public WebElement getfindMyPincodeRBtn()
     {
         return findMyPincodeRBtn;
+    }
+
+    public WebElement getHomebtn()
+    {
+        return homebtn;
     }
 }
