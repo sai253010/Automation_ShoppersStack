@@ -1,15 +1,20 @@
 package testngPackage;
 
 import basePackage.PurchasingWatchBaseClass;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
+
 public class AddingItemToCartUsingAssertions extends PurchasingWatchBaseClass
 {
+    WebDriver driver = browserUtil.getDriver();
+
     @Test
     public void getElectronics()
     {
+        driver = browserUtil.getDriver();
 //        actionUtil.clickOnElement(nav.getElectronicsLink());
 
         Assert.assertTrue(nav.getProfileIcon().isDisplayed() , "The Profile Icon Is Not Displayed");

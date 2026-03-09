@@ -1,9 +1,9 @@
 package ListenersPackage;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -27,7 +27,6 @@ public class CustomListeners implements ITestListener
 
     @Override
     public void onTestFailure(ITestResult result) {
-        WebDriver driver;
         try
         {
             Object object = result.getInstance();
@@ -35,15 +34,16 @@ public class CustomListeners implements ITestListener
             Field field = object.getClass().getDeclaredField("driver");
 
             field.setAccessible(true);
-            driver = (WebDriver)field.get(object);
 
-            TakesScreenshot screenshot = (TakesScreenshot) driver;
+            WebDriver Listenerdriver = (WebDriver) field.get(object);
+
+            TakesScreenshot screenshot = (TakesScreenshot) Listenerdriver;
 
             File tempFile = screenshot.getScreenshotAs(OutputType.FILE);
 
-            File srcFile = new File("./Screenshots/"+result.getMethod().getMethodName()+".png");
+            File srcFile = new File("./ScreenShotFolder"+result.getMethod().getMethodName()+"_SS.png");
 
-            FileHandler.copy(tempFile,srcFile);
+            FileUtils.copyFile(tempFile,srcFile);
 
         }
         catch (Exception e) {
