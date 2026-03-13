@@ -2,6 +2,7 @@ package utilityPackage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
@@ -15,7 +16,9 @@ public class BrowserUtility
         switch (browser.toLowerCase())
         {
             case "chrome":
-                tlDriver.set(new ChromeDriver());
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless");
+                tlDriver.set(new ChromeDriver(options));
                 break;
 
             case "firefox":
@@ -40,7 +43,7 @@ public class BrowserUtility
 
     public WebDriver getDriver()
     {
-        return getDriver();
+        return tlDriver.get();
     }
 
     public void closeBrowser()

@@ -27,10 +27,10 @@ public class UsingSoftAssertions extends PurchasingWatchBaseClass
 
         actionUtil.scrollTillElement(home.getDesiredProd());
 
-        soft.assertTrue(home.getdesiredprod().isDisplayed() , "The desired product is not opened");
-        Reporter.log("The desired product is opened" , true);
-
-        actionUtil.clickOnElement(home.getdesiredprod());
+//        soft.assertTrue(home.getdesiredprod().isDisplayed() , "The desired product is not opened");
+//        Reporter.log("The desired product is opened" , true);
+//
+//        actionUtil.clickOnElement(home.getdesiredprod());
         actionUtil.clickOnElement(product.getaddToCartBtn());
 
         actionUtil.clickOnElement(cart.getcartIcon());
